@@ -200,7 +200,6 @@ textarea {
 .chatbot-host-bubble {
   color: var(--chatbot-host-bubble-color);
   background-color: #f7f8ff;
-  @apply leading-5;
 }
 
 .chatbot-host-bubble > .bubble-typing {
@@ -219,7 +218,6 @@ textarea {
   color: var(--chatbot-guest-bubble-color);
   background-color: #3b81f6;
   border-radius: 6px;
-  @apply leading-5;
 }
 
 .chatbot-input {
