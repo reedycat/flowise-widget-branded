@@ -175,6 +175,7 @@ textarea {
     'Apple Color Emoji',
     'Segoe UI Emoji',
     'Segoe UI Symbol';
+  @apply leading-3;
 }
 
 .file-annotation-button {
