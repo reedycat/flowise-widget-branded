@@ -34,9 +34,10 @@ export const Bubble = (props: BubbleProps) => {
       {bubbleProps.theme?.chatWindow?.welcomeMessage && (
         <div
           class={
-            `fixed w-72 px-3.5 py-2.5 leading-5 text-sm rounded-xl shadow-lg` +
+            `fixed w-72 px-4 py-2.5 leading-5 text-sm rounded-xl shadow-lg` +
             (props.theme?.button?.size === 'large' ? ' bottom-8' : ' bottom-6') +
-            (props.theme?.button?.size === 'large' ? ' right-24' : ' right-20')
+            (props.theme?.button?.size === 'large' ? ' right-24' : ' right-20') +
+            (isBotOpened() ? ' opacity-0 pointer-events-none' : ' opacity-1')
           }
           style={{
             'background-color': bubbleProps.theme?.chatWindow?.botMessage?.backgroundColor,
@@ -49,7 +50,7 @@ export const Bubble = (props: BubbleProps) => {
             'z-index': 42424242,
           }}
         >
-          Привіт! Мене звати Артур. Чим я можу вам допомогти?
+          {bubbleProps.theme?.chatWindow.welcomeMessage}
         </div>
       )}
       <BubbleButton {...bubbleProps.theme?.button} toggleBot={toggleBot} isBotOpened={isBotOpened()} />
