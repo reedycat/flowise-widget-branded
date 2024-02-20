@@ -200,10 +200,11 @@ textarea {
 .chatbot-host-bubble {
   color: var(--chatbot-host-bubble-color);
   background-color: #f7f8ff;
+  line-height: 1.5;
 }
 
 .chatbot-host-bubble > .bubble-typing {
-  background-color: transparent;
+  background-color: #f7f8ff;
   border: var(--chatbot-host-bubble-border);
   border-radius: 6px;
 }
@@ -264,7 +265,7 @@ textarea {
 }
 
 .upload-progress-bar {
-  background-color: transparent;
+  background-color: #0042da;
   border-radius: var(--chatbot-border-radius);
 }
 

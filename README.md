@@ -121,6 +121,7 @@ You can also customize chatbot with different configuration
         botMessage: {
           backgroundColor: '#f7f8ff',
           textColor: '#303235',
+          typingBubbleColor: '#303235',
           showAvatar: true,
           avatarSrc: 'https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png',
         },

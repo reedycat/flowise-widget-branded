@@ -1,1 +1,1 @@
-{"version":3,"file":"TypingBubble.d.ts","sourceRoot":"","sources":["../../src/components/TypingBubble.tsx"],"names":[],"mappings":"AAAA,eAAO,MAAM,YAAY,sCAMxB,CAAC"}
+{"version":3,"file":"TypingBubble.d.ts","sourceRoot":"","sources":["../../src/components/TypingBubble.tsx"],"names":[],"mappings":"AAAA,KAAK,MAAM,GAAG;IACZ,iBAAiB,CAAC,EAAE,MAAM,CAAC;CAC5B,CAAC;AAEF,eAAO,MAAM,YAAY,UAAW,MAAM,mCAczC,CAAC"}

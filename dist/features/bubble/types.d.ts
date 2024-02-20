@@ -22,6 +22,7 @@ export type BotMessageTheme = {
     textColor?: string;
     showAvatar?: boolean;
     avatarSrc?: string;
+    typingBubbleColor?: string;
 };
 export type ChatWindowTheme = {
     showTitle?: boolean;
@@ -36,6 +37,9 @@ export type ChatWindowTheme = {
     botMessage?: BotMessageTheme;
     textInput?: TextInputTheme;
     poweredByTextColor?: string;
+    poweredByText?: string;
+    poweredByUrl?: string;
+    whiteLabel?: boolean;
 };
 export type ButtonTheme = {
     size?: 'medium' | 'large';

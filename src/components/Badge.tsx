@@ -3,6 +3,9 @@ import { onCleanup, onMount } from 'solid-js';
 type Props = {
   botContainer: HTMLDivElement | undefined;
   poweredByTextColor?: string;
+  whiteLabel?: boolean;
+  poweredByText?: string;
+  poweredByUrl?: string;
   badgeBackgroundColor?: string;
 };
 
@@ -36,6 +39,24 @@ export const Badge = (props: Props) => {
     if (observer) observer.disconnect();
   });
 
+  if (props.whiteLabel) {
+    return (
+      <span
+        style={{
+          'font-size': '13px',
+          position: 'absolute',
+          bottom: 0,
+          padding: '10px',
+          margin: 'auto',
+          width: '100%',
+          'background-color': props.badgeBackgroundColor ?? '#ffffff',
+        }}
+      >
+        ' '
+      </span>
+    );
+  }
+
   return (
     <span
       style={{
@@ -53,14 +74,14 @@ export const Badge = (props: Props) => {
       Powered by
       <a
         ref={liteBadge}
-        href={'https://chatmount.com'}
+        href={props.poweredByUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="lite-badge"
         id="lite-badge"
         style={{ 'font-weight': 'bold', color: props.poweredByTextColor ?? defaultTextColor }}
       >
-        <span> ChatMount</span>
+        <span> {props.poweredByText}</span>
       </a>
     </span>
   );

@@ -31,6 +31,27 @@ export const Bubble = (props: BubbleProps) => {
   return (
     <>
       <style>{styles}</style>
+      {bubbleProps.theme?.chatWindow?.welcomeMessage && (
+        <div
+          class={
+            `fixed w-72 px-3.5 py-2.5 leading-5 text-sm rounded-xl shadow-lg` +
+            (props.theme?.button?.size === 'large' ? ' bottom-8' : ' bottom-6') +
+            (props.theme?.button?.size === 'large' ? ' right-24' : ' right-20')
+          }
+          style={{
+            'background-color': bubbleProps.theme?.chatWindow?.botMessage?.backgroundColor,
+            color: bubbleProps.theme?.chatWindow?.botMessage?.textColor,
+            // border: '2px solid ' + bubbleProps.theme?.chatWindow?.backgroundColor,
+            transition: 'transform 200ms cubic-bezier(0, 1.2, 1, 1), opacity 150ms ease-out',
+            'transform-origin': 'center right',
+            transform: isBotOpened() ? 'scale3d(0, 0, 1)' : 'scale3d(1, 1, 1)',
+            'box-shadow': 'rgb(0 0 0 / 16%) 0px 5px 40px',
+            'z-index': 42424242,
+          }}
+        >
+          Привіт! Мене звати Артур. Чим я можу вам допомогти?
+        </div>
+      )}
       <BubbleButton {...bubbleProps.theme?.button} toggleBot={toggleBot} isBotOpened={isBotOpened()} />
       <div
         part="bot"
@@ -47,7 +68,7 @@ export const Bubble = (props: BubbleProps) => {
         class={
           `fixed sm:right-5 rounded-lg w-full sm:w-[400px] max-h-[704px]` +
           (isBotOpened() ? ' opacity-1' : ' opacity-0 pointer-events-none') +
-          (props.theme?.button?.size === 'large' ? ' bottom-24' : ' bottom-20')
+          (props.theme?.button?.size === 'large' ? ' bottom-28' : ' bottom-24')
         }
       >
         <Show when={isBotStarted()}>
@@ -59,6 +80,9 @@ export const Bubble = (props: BubbleProps) => {
             title={bubbleProps.theme?.chatWindow?.title}
             titleAvatarSrc={bubbleProps.theme?.chatWindow?.titleAvatarSrc}
             welcomeMessage={bubbleProps.theme?.chatWindow?.welcomeMessage}
+            whiteLabel={bubbleProps.theme?.chatWindow?.whiteLabel}
+            poweredByText={bubbleProps.theme?.chatWindow?.poweredByText}
+            poweredByUrl={bubbleProps.theme?.chatWindow?.poweredByUrl}
             poweredByTextColor={bubbleProps.theme?.chatWindow?.poweredByTextColor}
             textInput={bubbleProps.theme?.chatWindow?.textInput}
             botMessage={bubbleProps.theme?.chatWindow?.botMessage}
