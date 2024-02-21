@@ -15,13 +15,22 @@ export const Badge = (props: Props) => {
   let liteBadge: HTMLAnchorElement | undefined;
   let observer: MutationObserver | undefined;
 
+  interface IRNode extends Node {
+    id?: string;
+  }
+
   const appendBadgeIfNecessary = (mutations: MutationRecord[]) => {
     mutations.forEach((mutation) => {
       mutation.removedNodes.forEach((removedNode) => {
-        if ('id' in removedNode && liteBadge && removedNode.id == 'lite-badge') {
+        const rNode: IRNode = removedNode;
+        if ('id' in rNode && liteBadge && rNode.id == 'lite-badge') {
           console.log("Sorry, you can't remove the brand 😅");
           props.botContainer?.append(liteBadge);
         }
+        // if ('id' in removedNode && liteBadge && removedNodeId == 'lite-badge') {
+        //   console.log("Sorry, you can't remove the brand 😅");
+        //   props.botContainer?.append(liteBadge);
+        // }
       });
     });
   };
@@ -40,39 +49,6 @@ export const Badge = (props: Props) => {
   });
 
   return (
-    // <Show
-    //   when={!props.whiteLabel}
-    //   fallback={
-    //     <span
-    //       style={{
-    //         'font-size': '13px',
-    //         position: 'absolute',
-    //         bottom: 0,
-    //         padding: '10px',
-    //         margin: 'auto',
-    //         width: '100%',
-    //         'background-color': props.badgeBackgroundColor ?? '#ffffff',
-    //       }}
-    //     >
-    //       ' '
-    //     </span>
-    //   }
-    // >
-    //   <span
-    //     style={{
-    //       'font-size': '13px',
-    //       position: 'absolute',
-    //       bottom: 0,
-    //       padding: '10px',
-    //       margin: 'auto',
-    //       width: '100%',
-    //       'background-color': props.badgeBackgroundColor ?? '#ffffff',
-    //     }}
-    //   >
-    //     ' '
-    //   </span>
-    // </Show>
-
     <Show
       when={!props.whiteLabel}
       fallback={
