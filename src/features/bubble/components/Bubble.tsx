@@ -36,7 +36,7 @@ export const Bubble = (props: BubbleProps) => {
         <div
           class={
             `fixed w-72 px-4 py-2.5 leading-5 text-sm rounded-xl shadow-lg` +
-            (props.theme?.button?.size === 'large' ? ' bottom-8' : ' bottom-6') +
+            (props.theme?.button?.size === 'large' ? ' bottom-6' : ' bottom-6') +
             (props.theme?.button?.size === 'large' ? ' right-24' : ' right-20') +
             (isBotOpened() ? ' opacity-0 pointer-events-none' : ' opacity-1')
           }
