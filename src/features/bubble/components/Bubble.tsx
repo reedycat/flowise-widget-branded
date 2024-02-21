@@ -31,7 +31,8 @@ export const Bubble = (props: BubbleProps) => {
   return (
     <>
       <style>{styles}</style>
-      {bubbleProps.theme?.chatWindow?.welcomeMessage && (
+      {/* Floating welcome message */}
+      {bubbleProps.theme?.chatWindow?.floatingWelcomeMessage && (
         <div
           class={
             `fixed w-72 px-4 py-2.5 leading-5 text-sm rounded-xl shadow-lg` +
@@ -50,7 +51,7 @@ export const Bubble = (props: BubbleProps) => {
             'z-index': 42424242,
           }}
         >
-          {bubbleProps.theme?.chatWindow.welcomeMessage}
+          {bubbleProps.theme?.chatWindow.floatingWelcomeMessage}
         </div>
       )}
       <BubbleButton {...bubbleProps.theme?.button} toggleBot={toggleBot} isBotOpened={isBotOpened()} />

@@ -29,6 +29,7 @@ export type ChatWindowTheme = {
     title?: string;
     titleAvatarSrc?: string;
     welcomeMessage?: string;
+    floatingWelcomeMessage?: string;
     backgroundColor?: string;
     height?: number;
     width?: number;
