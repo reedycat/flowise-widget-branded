@@ -1,4 +1,4 @@
-import { onCleanup, onMount } from 'solid-js';
+import { onCleanup, Show, onMount } from 'solid-js';
 
 type Props = {
   botContainer: HTMLDivElement | undefined;
@@ -39,27 +39,43 @@ export const Badge = (props: Props) => {
     if (observer) observer.disconnect();
   });
 
-  // if (props.whiteLabel) {
-  //   return (
-  //     <span
-  //       style={{
-  //         'font-size': '13px',
-  //         position: 'absolute',
-  //         bottom: 0,
-  //         padding: '10px',
-  //         margin: 'auto',
-  //         width: '100%',
-  //         'background-color': props.badgeBackgroundColor ?? '#ffffff',
-  //       }}
-  //     >
-  //       ' '
-  //     </span>
-  //   );
-  // }
+  return (
+    // <Show
+    //   when={!props.whiteLabel}
+    //   fallback={
+    //     <span
+    //       style={{
+    //         'font-size': '13px',
+    //         position: 'absolute',
+    //         bottom: 0,
+    //         padding: '10px',
+    //         margin: 'auto',
+    //         width: '100%',
+    //         'background-color': props.badgeBackgroundColor ?? '#ffffff',
+    //       }}
+    //     >
+    //       ' '
+    //     </span>
+    //   }
+    // >
+    //   <span
+    //     style={{
+    //       'font-size': '13px',
+    //       position: 'absolute',
+    //       bottom: 0,
+    //       padding: '10px',
+    //       margin: 'auto',
+    //       width: '100%',
+    //       'background-color': props.badgeBackgroundColor ?? '#ffffff',
+    //     }}
+    //   >
+    //     ' '
+    //   </span>
+    // </Show>
 
-  return (function () {
-    if (props.whiteLabel) {
-      return (
+    <Show
+      when={!props.whiteLabel}
+      fallback={
         <span
           style={{
             'font-size': '13px',
@@ -73,36 +89,34 @@ export const Badge = (props: Props) => {
         >
           ' '
         </span>
-      );
-    } else {
-      return (
-        <span
-          style={{
-            'font-size': '13px',
-            position: 'absolute',
-            bottom: 0,
-            padding: '10px',
-            margin: 'auto',
-            width: '100%',
-            'text-align': 'center',
-            color: props.poweredByTextColor ?? defaultTextColor,
-            'background-color': props.badgeBackgroundColor ?? '#ffffff',
-          }}
+      }
+    >
+      <span
+        style={{
+          'font-size': '13px',
+          position: 'absolute',
+          bottom: 0,
+          padding: '10px',
+          margin: 'auto',
+          width: '100%',
+          'text-align': 'center',
+          color: props.poweredByTextColor ?? defaultTextColor,
+          'background-color': props.badgeBackgroundColor ?? '#ffffff',
+        }}
+      >
+        Powered by
+        <a
+          ref={liteBadge}
+          href={props.poweredByUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="lite-badge"
+          id="lite-badge"
+          style={{ 'font-weight': 'bold', color: props.poweredByTextColor ?? defaultTextColor }}
         >
-          Powered by
-          <a
-            ref={liteBadge}
-            href={props.poweredByUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="lite-badge"
-            id="lite-badge"
-            style={{ 'font-weight': 'bold', color: props.poweredByTextColor ?? defaultTextColor }}
-          >
-            <span> {props.poweredByText}</span>
-          </a>
-        </span>
-      );
-    }
-  })();
+          <span> {props.poweredByText}</span>
+        </a>
+      </span>
+    </Show>
+  );
 };
