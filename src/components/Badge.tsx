@@ -39,7 +39,25 @@ export const Badge = (props: Props) => {
     if (observer) observer.disconnect();
   });
 
-  if (props.whiteLabel) {
+  function branding(props: Props) {
+    if (props.whiteLabel) {
+      return (
+        <span
+          style={{
+            'font-size': '13px',
+            position: 'absolute',
+            bottom: 0,
+            padding: '10px',
+            margin: 'auto',
+            width: '100%',
+            'background-color': props.badgeBackgroundColor ?? '#ffffff',
+          }}
+        >
+          ' '
+        </span>
+      );
+    }
+
     return (
       <span
         style={{
@@ -49,40 +67,26 @@ export const Badge = (props: Props) => {
           padding: '10px',
           margin: 'auto',
           width: '100%',
+          'text-align': 'center',
+          color: props.poweredByTextColor ?? defaultTextColor,
           'background-color': props.badgeBackgroundColor ?? '#ffffff',
         }}
       >
-        ' '
+        Powered by
+        <a
+          ref={liteBadge}
+          href={props.poweredByUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="lite-badge"
+          id="lite-badge"
+          style={{ 'font-weight': 'bold', color: props.poweredByTextColor ?? defaultTextColor }}
+        >
+          <span> {props.poweredByText}</span>
+        </a>
       </span>
     );
   }
 
-  return (
-    <span
-      style={{
-        'font-size': '13px',
-        position: 'absolute',
-        bottom: 0,
-        padding: '10px',
-        margin: 'auto',
-        width: '100%',
-        'text-align': 'center',
-        color: props.poweredByTextColor ?? defaultTextColor,
-        'background-color': props.badgeBackgroundColor ?? '#ffffff',
-      }}
-    >
-      Powered by
-      <a
-        ref={liteBadge}
-        href={props.poweredByUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="lite-badge"
-        id="lite-badge"
-        style={{ 'font-weight': 'bold', color: props.poweredByTextColor ?? defaultTextColor }}
-      >
-        <span> {props.poweredByText}</span>
-      </a>
-    </span>
-  );
+  return branding(props);
 };
