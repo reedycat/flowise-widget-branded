@@ -14,8 +14,8 @@ export const Bubble = (props: BubbleProps) => {
 
   const [isBotOpened, setIsBotOpened] = createSignal(false);
   const [isBotStarted, setIsBotStarted] = createSignal(false);
-  const isFloatingWelcomeMessage = bubbleProps.theme?.chatWindow?.floatingWelcomeMessage ? true : false;
-  const [isFloatMsgOpened, setFloatMsgOpened] = createSignal(isFloatingWelcomeMessage);
+  const initialFloatingMsgState = !localStorage.getItem('hideBotFloatingMsg') ? true : false;
+  const [isFloatMsgOpened, setFloatMsgOpened] = createSignal(initialFloatingMsgState);
 
   const openBot = () => {
     if (!isBotStarted()) setIsBotStarted(true);
@@ -30,6 +30,11 @@ export const Bubble = (props: BubbleProps) => {
     isBotOpened() ? closeBot() : openBot();
   };
 
+  const closeFloatingMsg = () => {
+    setFloatMsgOpened(false);
+    localStorage.setItem('hideBotFloatingMsg', '1');
+  };
+
   return (
     <>
       <style>{styles}</style>
@@ -40,7 +45,7 @@ export const Bubble = (props: BubbleProps) => {
             `fixed w-72 leading-5 text-sm rounded-xl shadow-lg` +
             (props.theme?.button?.size === 'large' ? ' bottom-6' : ' bottom-6') +
             (props.theme?.button?.size === 'large' ? ' right-24' : ' right-20') +
-            (isBotOpened() ? ' opacity-0 pointer-events-none' : ' opacity-1')
+            (isBotOpened() || !isFloatMsgOpened() ? ' opacity-0 pointer-events-none' : ' opacity-1')
           }
           style={{
             'background-color': bubbleProps.theme?.chatWindow?.botMessage?.backgroundColor,
@@ -48,14 +53,16 @@ export const Bubble = (props: BubbleProps) => {
             // border: '2px solid ' + bubbleProps.theme?.chatWindow?.backgroundColor,
             transition: 'transform 200ms cubic-bezier(0, 1.2, 1, 1), opacity 150ms ease-out',
             'transform-origin': 'center right',
-            transform: isBotOpened() ? 'scale3d(0, 0, 1)' : 'scale3d(1, 1, 1)',
+            transform: isBotOpened() || !isFloatMsgOpened() ? 'scale3d(0, 0, 1)' : 'scale3d(1, 1, 1)',
             'box-shadow': 'rgb(0 0 0 / 16%) 0px 5px 40px',
             'z-index': 42424242,
           }}
         >
           <div class="relative h-full w-full px-4 py-2.5">
             {bubbleProps.theme?.chatWindow.floatingWelcomeMessage}
-            <button class="absolute top-0 right-1 p-1 text-2xl rotate-45 hover:-rotate-90">+</button>
+            <button class="absolute top-0 right-1 p-1 text-2xl rotate-45 hover:-rotate-90" onClick={closeFloatingMsg}>
+              +
+            </button>
           </div>
         </div>
       )}
