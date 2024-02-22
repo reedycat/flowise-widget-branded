@@ -14,6 +14,8 @@ export const Bubble = (props: BubbleProps) => {
 
   const [isBotOpened, setIsBotOpened] = createSignal(false);
   const [isBotStarted, setIsBotStarted] = createSignal(false);
+  const isFloatingWelcomeMessage = bubbleProps.theme?.chatWindow?.floatingWelcomeMessage ? true : false;
+  const [isFloatMsgOpened, setFloatMsgOpened] = createSignal(isFloatingWelcomeMessage);
 
   const openBot = () => {
     if (!isBotStarted()) setIsBotStarted(true);
@@ -35,7 +37,7 @@ export const Bubble = (props: BubbleProps) => {
       {bubbleProps.theme?.chatWindow?.floatingWelcomeMessage && (
         <div
           class={
-            `fixed w-72 px-4 py-2.5 leading-5 text-sm rounded-xl shadow-lg` +
+            `fixed w-72 leading-5 text-sm rounded-xl shadow-lg` +
             (props.theme?.button?.size === 'large' ? ' bottom-6' : ' bottom-6') +
             (props.theme?.button?.size === 'large' ? ' right-24' : ' right-20') +
             (isBotOpened() ? ' opacity-0 pointer-events-none' : ' opacity-1')
@@ -51,7 +53,10 @@ export const Bubble = (props: BubbleProps) => {
             'z-index': 42424242,
           }}
         >
-          {bubbleProps.theme?.chatWindow.floatingWelcomeMessage}
+          <div class="relative h-full w-full px-4 py-2.5">
+            {bubbleProps.theme?.chatWindow.floatingWelcomeMessage}
+            <button class="absolute top-0 right-1 p-1 text-2xl rotate-45 hover:-rotate-90">+</button>
+          </div>
         </div>
       )}
       <BubbleButton {...bubbleProps.theme?.button} toggleBot={toggleBot} isBotOpened={isBotOpened()} />
